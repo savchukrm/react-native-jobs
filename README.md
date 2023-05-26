@@ -18,7 +18,6 @@ The following packages are used in this application and serve specific purposes:
 - `expo-font`: Used for loading custom fonts in the application.
 
 - `react`: The React library is the core of the application and is responsible for building the user interface.
-- `react-dom`: This package is used for rendering React components on the web.
 - `react-native`: The React Native library enables building native mobile applications using JavaScript and React.
 
 If you want to run that code on your local computer or an emulator you should visit the next website, register and get the key to have access to API's key.

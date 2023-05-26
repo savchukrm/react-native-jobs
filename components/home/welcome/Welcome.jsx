@@ -16,7 +16,7 @@ import { COLORS, icons, SIZES } from '../../../constants';
 
 const jobTypes = ['Full-time', 'Part-time', 'Contract'];
 
-const Welcome = () => {
+const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
   const colorScheme = useColorScheme();
   const [activeJobType, setActiveJobType] = useState('Full-time');
@@ -34,14 +34,16 @@ const Welcome = () => {
         <View style={styles.searchWrapper}>
           <TextInput
             style={[styles.searchInput, { color: placeholderColor }]}
-            value=""
-            onChange={() => {}}
+            value={searchTerm}
+            onChangeText={(text) => {
+              setSearchTerm(text);
+            }}
             placeholder="What are you looking for?"
             placeholderTextColor={placeholderColor}
           />
         </View>
 
-        <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
           <Image
             source={icons.search}
             resizeMode="contain"

@@ -1,4 +1,5 @@
-import React from 'react';
+import { Stack, useRouter, useSearchParams } from 'expo-router';
+import { useCallback, useState } from 'react';
 import {
   View,
   Text,
@@ -7,8 +8,6 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
-import { Stack, useRouter, useSearchParams } from 'expo-router';
-import { useCallback, useState } from 'react';
 
 import {
   Company,
@@ -19,23 +18,26 @@ import {
   Specifics,
 } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
-
 import useFetch from '../../hook/useFetch';
 
 const tabs = ['About', 'Qualifications', 'Responsibilities'];
-
-const onRefresh = () => {};
 
 const JobDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
 
-  const [refreshing, setRefreshing] = useState(false);
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-
   const { data, isLoading, error, refetch } = useFetch('job-details', {
     job_id: params.id,
   });
+
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    refetch();
+    setRefreshing(false);
+  }, []);
 
   const displayTabContent = () => {
     switch (activeTab) {
@@ -85,6 +87,7 @@ const JobDetails = () => {
           headerTitle: '',
         }}
       />
+
       <>
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -93,19 +96,11 @@ const JobDetails = () => {
           }
         >
           {isLoading ? (
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <ActivityIndicator size="large" color={COLORS.primary} />
-            </View>
+            <ActivityIndicator size="large" color={COLORS.primary} />
           ) : error ? (
-            <Text>Someting went wrong</Text>
+            <Text>Something went wrong</Text>
           ) : data.length === 0 ? (
-            <Text>No data</Text>
+            <Text>No data available</Text>
           ) : (
             <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
               <Company
