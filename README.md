@@ -1,14 +1,26 @@
-# Expo Router Example
+# Search Job App
 
-Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
+This is a application built with React Native that allows users to search for job listings, access information about each job, view required qualifications and responsibilities, and apply for the desired job positions.
 
-## 🚀 How to use
+## Features
 
-```sh
-npx create-expo-app -e with-router
-```
+- Job search: Users can search for job listings based on specific keywords or filters.
+- Job details: Users can view detailed information about each job listing, including the job title, company, location, and description.
+- Qualifications and responsibilities: Users can access the required qualifications and responsibilities for each job.
+- Job application: Users can apply for the job.
 
-## 📝 Notes
+## Dependencies
 
-- [Expo Router: Docs](https://expo.github.io/router)
-- [Expo Router: Repo](https://github.com/expo/router)
+The following packages are used in this application and serve specific purposes:
+
+- `axios`: This package is used for making HTTP requests to retrieve job listings and send job applications.
+- `expo`: The Expo framework provides a development environment and tools for building React Native applications.
+- `expo-font`: Used for loading custom fonts in the application.
+
+- `react`: The React library is the core of the application and is responsible for building the user interface.
+- `react-dom`: This package is used for rendering React components on the web.
+- `react-native`: The React Native library enables building native mobile applications using JavaScript and React.
+
+If you want to run that code on your local computer or an emulator you should visit the next website, register and get the key to have access to API's key.
+
+https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch
